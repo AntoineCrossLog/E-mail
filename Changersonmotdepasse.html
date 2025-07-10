@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulation de Phishing – Analyse d'un Email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-height: 60px;
+      height: auto;
+    }
+    h1 {
+      color: #cc0000;
+      font-size: 1.8em;
+      margin: 0;
+    }
+    h2 {
+      color: #00529B;
+    }
+    .box {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 20px 0;
+      border-left: 5px solid #cc0000;
+    }
+    ul {
+      margin-top: 0;
+    }
+    .important {
+      font-weight: bold;
+      color: #cc0000;
+    }
+    .danger {
+      color: #d60000;
+      border-bottom: 1px dotted #d60000;
+      cursor: help;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://crosslog.com/wp-content/uploads/2020/11/LOGO-CROSSLOG-2-copy-01.svg" alt="Logo Crosslog" />
+    <h1>🚨 Simulation de Phishing : Analyse d'un Email Trompeur</h1>
+  </header>
+
+  <p>Vous avez reçu un email vous demandant de lire et signer un avenant à votre contrat de télétravail. Cet email est en réalité une <span class="important">simulation interne de phishing</span> destinée à tester votre vigilance.</p>
+
+  <div class="box">
+    <h2>📧 Mail reçu :</h2>
+    <p>Bonjour,</p>
+
+    <p>Dans le cadre de la <span class="danger" title="Le cadre est vague, cela peut être utilisé pour paraître crédible sans détails vérifiables.">révision annuelle des conditions de télétravail</span>, la Direction des Ressources Humaines a mis à jour certains points contractuels relatifs à l’organisation hybride. Vous trouverez en pièce jointe <span class="danger" title="Les pièces jointes dans les emails suspects peuvent contenir des malwares.">l’avenant à votre contrat de travail</span> à lire et signer.</p>
+
+    <p>Merci de <span class="danger" title="Les urgences créent une pression psychologique qui pousse à agir sans réfléchir.">nous retourner ce document signé d’ici vendredi prochain 17h</span> à l’adresse suivante :<br>
+    <span class="danger" title="Adresse non professionnelle, souvent utilisée dans le phishing.">rh.crosslog1245@gmail.com</span></p>
+
+    <p>Ce document contient notamment :</p>
+    <ul>
+      <li>• La mise à jour des jours autorisés de télétravail.</li>
+      <li>• Les nouvelles règles d’indemnisation.</li>
+      <li>• La clause de flexibilité en cas de modification exceptionnelle.</li>
+    </ul>
+
+    <p>Si vous avez la moindre question, vous pouvez nous contacter directement.</p>
+    <p>Bien cordialement,</p>
+  </div>
+
+  <h2>🔍 Indices qui doivent vous alerter</h2>
+  <ul>
+    <li><strong>Adresse email anormale :</strong> utilisation d’une adresse publique comme <em>@gmail.com</em> au lieu du domaine officiel de l’entreprise.</li>
+    <li><strong>Pièce jointe inattendue :</strong> soyez méfiant si vous ne vous attendiez pas à recevoir un document.</li>
+    <li><strong>Sens de l'urgence :</strong> demandes pressantes, délais courts pour agir, pression psychologique.</li>
+    <li><strong>Langage impersonnel :</strong> pas de mention de votre nom, ni de personnalisation du message.</li>
+    <li><strong>Fautes d’orthographe ou formulation étrange :</strong> un signe fréquent de tentative de fraude.</li>
+    <li><strong>Liens suspects :</strong> survolez les liens pour voir s’ils mènent vers des sites douteux (ex. : 
+      <a href="https://securite.crosslog.fr" target="_blank" onclick="logClick('Lien Phishing Simulation')">securite.crosslog.fr</a>
+    ).</li>
+  </ul>
+
+  <h2>✅ Bonnes pratiques pour prévenir le phishing</h2>
+  <ul>
+    <li><strong>Vérifiez toujours l’adresse d’expédition :</strong> méfiez-vous des adresses proches de l’officielle mais modifiées.</li>
+    <li><strong>Ne cliquez pas immédiatement :</strong> prenez le temps d’évaluer la pertinence du message.</li>
+    <li><strong>Contactez directement l’expéditeur par un canal sûr :</strong> téléphone ou messagerie interne.</li>
+    <li><strong>Ne partagez jamais vos identifiants :</strong> même sous prétexte d'urgence ou de maintenance.</li>
+    <li><strong>Signalez les tentatives de phishing :</strong> à l’équipe informatique ou via le bouton de signalement dans votre messagerie.</li>
+    <li><strong>Mettez à jour vos logiciels et antivirus :</strong> pour vous protéger contre les pièces jointes malveillantes.</li>
+    <li><strong>Utilisez l’authentification à deux facteurs (2FA)</strong> lorsque disponible.</li>
+    <li><strong>Accédez toujours aux liens sensibles via les favoris ou en tapant l'adresse directement :</strong> évitez les clics directs dans les emails.</li>
+  </ul>
+
+  <h2>📘 Objectif de cette simulation</h2>
+  <p>Cette simulation a pour but de renforcer la vigilance des collaborateurs face aux risques de phishing. Merci pour votre attention et votre prudence.</p>
+
+  <p><em>Pour toute question ou signalement, n'hésitez pas à contacter le service informatique.</em></p>
+
+  <!-- Script pour envoyer à Google Sheets -->
+  <script>
+    function getEmailFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("email") || "unknown";
+    }
+
+    function logClick(pageName) {
+      const email = getEmailFromURL();
+      const endpoint = "https://script.google.com/macros/s/AKfycbzgqzYPJiESeCaGD0t3NdRS6ixRRCnt37A_2eI2ZyrU__dnO-_4-7cg_eOYNw_BF6YD9w/exec";
+
+      fetch(`${endpoint}?email=${encodeURIComponent(email)}&page=${encodeURIComponent(pageName)}`)
+        .then(response => console.log("Click log sent"))
+        .catch(err => console.error("Logging failed", err));
+    }
+  </script>
+</body>
+</html>
